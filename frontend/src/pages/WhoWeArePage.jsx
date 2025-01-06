@@ -5,7 +5,7 @@ import MoreAbout from "../components/Home/MoreAbout";
 export default function WhoWeArePage() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "business_portfolio - Who We Are";
+    document.title = "B&B - Who We Are";
   }, []);
 
   return (

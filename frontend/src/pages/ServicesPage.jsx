@@ -3,7 +3,7 @@ import Services from "../components/Home/Services";
 
 export default function ServicesPage() {
   useEffect(() => {
-    document.title = "business_portfolio - Services";
+    document.title = "B&B - Services";
     window.scrollTo(0, 0);
   }, []);
 

@@ -8,7 +8,7 @@ import MoreAbout from "../components/Home/MoreAbout";
 export default function AboutPage() {
   const { slug } = useParams();
   useEffect(() => {
-    document.title = `business_portfolio - ${slug}`;
+    document.title = `B&B - ${slug}`;
     window.scrollTo(0, 0);
   }, []);
 
