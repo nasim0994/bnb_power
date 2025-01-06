@@ -1,5 +1,4 @@
 import { FaUserShield } from "react-icons/fa";
-import { FcBusinessman } from "react-icons/fc";
 import { FaBloggerB } from "react-icons/fa";
 import { MdDesignServices, MdOutlineFeaturedPlayList } from "react-icons/md";
 
@@ -40,24 +39,6 @@ export default function Dashboard() {
         <div className="flex justify-between items-center rounded-lg shadow p-4 bg-base-100">
           <div className="bg-green-600 text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
             <FaBloggerB className="text-xl" />
-          </div>
-        </div>
-
-        <div className="flex justify-between items-center rounded-lg shadow p-4 bg-base-100">
-          <div>
-            <Link
-              to="/admin/director/all"
-              className="text-neutral font-dinMedium hover:text-primary duration-300"
-            >
-              Total Directors
-            </Link>
-            <h3 className="text-green-600 font-bold">
-              {directors?.data?.length}
-            </h3>
-          </div>
-
-          <div className="bg-primary text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
-            <FcBusinessman className="text-2xl" />
           </div>
         </div>
 
