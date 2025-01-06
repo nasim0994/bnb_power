@@ -38,6 +38,7 @@ import AddProduct from "../pages/Dashboard/Portfolio/Product/AddProduct";
 import EditProduct from "../pages/Dashboard/Portfolio/Product/EditProduct";
 import ProductPage from "../pages/ProductPage";
 import ProductDetails from "../pages/ProductDetails";
+import CompanyDetails from "../pages/Company/CompanyDetails";
 
 const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
 const SEO = lazy(() => import("../pages/Dashboard/SEO/SEO"));
@@ -115,26 +116,18 @@ export const routes = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/company/:id",
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <CompanyDetails />
+          </Suspense>
+        ),
+      },
+      {
         path: "/services",
         element: (
           <Suspense fallback={<Spinner />}>
             <ServicesPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/blogs",
-        element: (
-          <Suspense fallback={<Spinner />}>
-            <BlogsPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/blogs/:id",
-        element: (
-          <Suspense fallback={<Spinner />}>
-            <BlogDetails />
           </Suspense>
         ),
       },

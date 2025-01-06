@@ -4,6 +4,7 @@ import Spinner from "../../components/Spinner/Spinner";
 import Banner from "../../components/Home/Banner";
 import Whoweare from "../../components/Home/Whoweare";
 import MoreAbout from "../../components/Home/MoreAbout";
+import Companies from "../../components/Home/Companies";
 const Contact = lazy(() => import("../../components/Home/Contact"));
 const Counter = lazy(() => import("../../components/Home/Counter"));
 const Services = lazy(() => import("../../components/Home/Services"));
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <>
       <Banner />
+      <Companies />
       <Whoweare />
       <MoreAbout />
       <Suspense fallback={<Spinner />}>
