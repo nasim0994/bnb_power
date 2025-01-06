@@ -31,18 +31,6 @@ export default function Dashboard() {
         </div>
 
         <div className="flex justify-between items-center rounded-lg shadow p-4 bg-base-100">
-          <div className="bg-red-600 text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
-            <MdOutlineFeaturedPlayList className="text-xl" />
-          </div>
-        </div>
-
-        <div className="flex justify-between items-center rounded-lg shadow p-4 bg-base-100">
-          <div className="bg-green-600 text-base-100 w-11 h-11 rounded-lg flex justify-center items-center">
-            <FaBloggerB className="text-xl" />
-          </div>
-        </div>
-
-        <div className="flex justify-between items-center rounded-lg shadow p-4 bg-base-100">
           <div>
             <Link
               to="/admin/administrator/all"
