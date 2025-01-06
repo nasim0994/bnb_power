@@ -64,32 +64,14 @@ export default function Header() {
 
               <li>
                 <NavLink to="/who-we-are">About</NavLink>
-
-                <div className="dropdown">
-                  <ul>
-                    {abouts?.map((about, i) => (
-                      <li key={i}>
-                        <Link to={`/about-us/${about?.slug}`}>
-                          {about?.title}
-                        </Link>
-                      </li>
-                    ))}
-
-                    <li>
-                      <NavLink to="/about-us/board-directors">
-                        Board of Directors
-                      </NavLink>
-                    </li>
-                  </ul>
-                </div>
               </li>
 
               <li>
-                <NavLink to="/activities">Activities</NavLink>
+                <NavLink to="/services">Services</NavLink>
               </li>
 
               <li>
-                <NavLink to="/portfolio">Portfolio</NavLink>
+                <NavLink to="/portfolio">Company</NavLink>
 
                 <div className="dropdown">
                   <ul>
@@ -102,10 +84,6 @@ export default function Header() {
                     ))}
                   </ul>
                 </div>
-              </li>
-
-              <li>
-                <NavLink to="/blogs">Blogs</NavLink>
               </li>
 
               <li>

@@ -31,30 +31,10 @@ const adminSidebarItems = [
     title: "Service",
     path: "/admin/services",
   },
-
-  {
-    icon: <FaBloggerB />,
-    title: "blogs",
-    path: "/admin/blogs",
-  },
   {
     icon: <GoNumber className="text-lg" />,
     title: "Counter",
     path: "/admin/counter",
-  },
-  {
-    icon: <MdOutlineFeaturedPlayList className="text-lg" />,
-    title: "Feature",
-    subMenu: [
-      {
-        title: "Feature Section",
-        path: "/admin/feature-section",
-      },
-      {
-        title: "All Features",
-        path: "/admin/features",
-      },
-    ],
   },
   {
     icon: <FcAbout />,
@@ -71,29 +51,12 @@ const adminSidebarItems = [
     ],
   },
   {
-    icon: <FcBusinessman />,
-    title: "Directors",
-    path: "/admin/director/all",
-  },
-  {
-    icon: <BsFillPassportFill />,
-    title: "Portfolio",
+    icon: <FcAbout />,
+    title: "Company",
     subMenu: [
       {
-        title: "Portfolio",
-        path: "/admin/portfolio/all",
-      },
-      {
-        title: "Class Category",
-        path: "/admin/portfolio/category/all",
-      },
-      {
-        title: "Class",
-        path: "/admin/portfolio/class/all",
-      },
-      {
-        title: "Products",
-        path: "/admin/portfolio/product/all",
+        title: "Companies",
+        path: "/admin/company/all",
       },
     ],
   },
@@ -106,12 +69,6 @@ const adminSidebarItems = [
     icon: <FaRegMessage />,
     title: "Contact Message",
     path: "/admin/contact-message",
-  },
-
-  {
-    icon: <FaVideo className="text-lg" />,
-    title: "Video Section",
-    path: "/admin/video-section",
   },
   {
     icon: <RiAdminFill />,

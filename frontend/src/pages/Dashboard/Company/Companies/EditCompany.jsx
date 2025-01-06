@@ -1,55 +1,41 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import ReactImageUploading from "react-images-uploading";
 import { AiFillDelete } from "react-icons/ai";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
-import JoditEditor from "jodit-react";
 import {
-  useEditDirectorMutation,
-  useGetSingleDirectorQuery,
-} from "../../../Redux/directorApi";
+  useEditCompanyMutation,
+  useGetSingleCompanyQuery,
+} from "../../../../Redux/companyApi";
 
-export default function EditDirector() {
-  const editor = useRef(null);
+export default function EditCompany() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [images, setImages] = useState([]);
-  const [description, setDescription] = useState("");
 
-  const { data, isLoading } = useGetSingleDirectorQuery(id);
-  const service = data?.data;
+  const { data, isLoading } = useGetSingleCompanyQuery(id);
+  const company = data?.data;
 
-  useEffect(() => {
-    if (service) {
-      setDescription(service?.description);
-    }
-  }, [service]);
-
-  const [editDirector, { isLoading: editLoading }] = useEditDirectorMutation();
+  const [editCompany, { isLoading: editLoading }] = useEditCompanyMutation();
 
   const handleEdit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
-    const designation = e.target.designation.value;
 
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("designation", designation);
-    formData.append("description", description);
     if (images?.length > 0) {
       formData.append("image", images[0].file);
     }
 
-    const res = await editDirector({ id, formData });
+    const res = await editCompany({ id, formData });
     if (res?.data?.success) {
-      toast.success("Director edited successfully");
+      toast.success("Company edited successfully");
       e.target.reset();
       setImages([]);
-      navigate("/admin/director/all");
+      navigate("/admin/company/all");
     } else {
-      toast.error(
-        res?.data?.message ? res?.data?.message : "Something went wrong!"
-      );
+      toast.error(res?.data?.message || "Something went wrong!");
       console.log(res);
     }
   };
@@ -59,7 +45,7 @@ export default function EditDirector() {
   return (
     <section className="bg-base-100 shadow rounded">
       <div className="p-4 border-b text-neutral font-medium flex justify-between items-center">
-        <h3>Edit Director</h3>
+        <h3>Edit Company</h3>
       </div>
 
       <form onSubmit={handleEdit} className="p-4">
@@ -112,8 +98,8 @@ export default function EditDirector() {
             </div>
             <div className="mt-4">
               <img
-                src={`${import.meta.env.VITE_BACKEND_URL}/${service?.image}`}
-                alt={service?.name}
+                src={`${import.meta.env.VITE_BACKEND_URL}/${company?.image}`}
+                alt={company?.name}
                 className="w-40 h-20"
                 loading="lazy"
               />
@@ -124,42 +110,14 @@ export default function EditDirector() {
         <div className="mt-4 grid sm:grid-cols-2 gap-4">
           <div>
             <p className="mb-1">Name</p>
-            <input type="text" name="name" defaultValue={service?.name} />
+            <input type="text" name="name" defaultValue={company?.name} />
           </div>
-
-          <div>
-            <p className="mb-1">Designation</p>
-            <input
-              type="text"
-              name="designation"
-              defaultValue={service?.designation}
-            />
-          </div>
-        </div>
-
-        <div className="mt-4">
-          <p className="mb-1">Description</p>
-          <JoditEditor
-            ref={editor}
-            value={description}
-            tabIndex={1}
-            onBlur={(newContent) => setDescription(newContent)}
-          />
         </div>
 
         <div className="mt-5">
           <div className="flex gap-2 items-center">
-            <Link
-              to="/admin/services"
-              className="border bg-gray-600 px-6 py-2 rounded text-base-100"
-            >
-              Cancel
-            </Link>
-            <button
-              disabled={editLoading && "disabled"}
-              className="primary_btn"
-            >
-              {editLoading ? "Loading..." : "Edit Director"}
+            <button disabled={editLoading} className="primary_btn">
+              {editLoading ? "Loading..." : "Edit Company"}
             </button>
           </div>
         </div>

@@ -1,6 +1,12 @@
 import { BiCircle } from "react-icons/bi";
+import { useParams } from "react-router-dom";
+import { useGetCompanyBySlugQuery } from "../../Redux/companyApi";
+
 export default function CompanyDetails() {
   window.scrollTo(0, 0);
+  const { slug } = useParams();
+  const { data } = useGetCompanyBySlugQuery(slug);
+  const company = data?.data;
 
   return (
     <>
@@ -16,7 +22,7 @@ export default function CompanyDetails() {
       <section className="py-10">
         <div className="container">
           <h2 className="text-3xl font-semibold text-primary">
-            ATMOS ENGINEERING
+            {company?.name}
           </h2>
           <div className="mt-4 text-neutral">
             <p>

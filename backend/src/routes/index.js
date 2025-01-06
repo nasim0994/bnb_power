@@ -15,19 +15,10 @@ const businessInfo = require("./businessInfoRoutes");
 
 const service = require("./serviceRoute");
 const counter = require("./counterRoutes");
-const blog = require("./blogRoutes");
-const features = require("./featureRoutes");
-const featureSection = require("./featureSectionRoutes");
-const director = require("./directorRoutes");
-const videoSection = require("./videoSectionRoutes");
+const company = require("./companyRoutes");
 
 const message = require("./messageRoutes");
 const seo = require("./seoRoutes");
-
-const portfolio = require("./portfolio/portfolioRoutes");
-const classCategory = require("./portfolio/categoryRoutes");
-const classes = require("./portfolio/classRoutes");
-const product = require("./portfolio/productRoutes");
 
 //------------------------------------------------------------------------------
 // use Routes
@@ -44,18 +35,9 @@ router.use("/businessInfo", businessInfo);
 
 router.use("/services", service);
 router.use("/counter", counter);
-router.use("/blogs", blog);
-router.use("/feature", features);
-router.use("/featureSection", featureSection);
-router.use("/director", director);
-router.use("/videoSection", videoSection);
+router.use("/company", company);
 
 router.use("/message", message);
 router.use("/seo", seo);
-
-router.use("/portfolio", portfolio);
-router.use("/portfolio/category", classCategory);
-router.use("/portfolio/class", classes);
-router.use("/portfolio/product", product);
 
 module.exports = router;

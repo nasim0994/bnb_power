@@ -1,15 +1,19 @@
-const Model = require("../../models/portfolio/productModel");
+const Model = require("../models/companyModel");
 const fs = require("fs");
-const Portfolio = require("../../models/portfolio/portfolioModel");
-const Category = require("../../models/portfolio/classCategoryModel");
-const Class = require("../../models/portfolio/classModel");
+const makeSlug = require("../utils/makeSlug");
 
 exports.add = async (req, res) => {
   const file = req?.file?.filename;
-  const data = JSON.parse(req.body.data);
+  const data = req?.body;
 
   try {
-    const result = await Model.create({ ...data, image: `/product/${file}` });
+    let newData = {
+      ...data,
+      slug: makeSlug(data?.name),
+      image: `/company/${file}`,
+    };
+
+    const result = await Model.create(newData);
 
     if (!result) {
       return res.json({
@@ -20,11 +24,11 @@ exports.add = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      message: "Product add success",
+      message: "Company add success",
       data: result,
     });
   } catch (error) {
-    fs.unlink(`./uploads/product/${file}`, (err) => {
+    fs.unlink(`./uploads/company/${file}`, (err) => {
       if (err) {
         console.log(err);
       }
@@ -37,30 +41,12 @@ exports.add = async (req, res) => {
 };
 
 exports.getAll = async (req, res) => {
-  const { portfolio, category, cls } = req.query;
-
   try {
-    const targetedPortfolio = await Portfolio.findOne({ slug: portfolio });
-    const targetedCategory = await Category.findOne({ slug: category });
-    const targetedClass = await Class.findOne({ slug: cls });
-
-    const targetedPortfolioId = targetedPortfolio?._id;
-    const targetedCategoryId = targetedCategory?._id;
-    const targetedClassId = targetedClass?._id;
-
-    let query = {};
-    if (targetedPortfolioId) query.portfolio = targetedPortfolioId;
-    if (targetedCategoryId) query.classCategory = targetedCategoryId;
-    if (targetedClassId) query.class = targetedClassId;
-
-    const result = await Model.find(query).populate(
-      "portfolio classCategory class",
-      "title slug mcl"
-    );
+    const result = await Model.find({});
 
     res.status(200).json({
       success: true,
-      message: "Products get success",
+      message: "Company get success",
       data: result,
     });
   } catch (error) {
@@ -74,14 +60,42 @@ exports.getAll = async (req, res) => {
 exports.getSingle = async (req, res) => {
   try {
     const id = req?.params?.id;
-    const result = await Model.findById(id).populate(
-      "portfolio classCategory class",
-      "title slug"
-    );
+    const result = await Model.findById(id);
+    if (!result) {
+      return res.json({
+        success: false,
+        message: "Company not found",
+      });
+    }
 
     res.status(200).json({
       success: true,
-      message: "Product get success",
+      message: "Company get success",
+      data: result,
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+exports.getBySlug = async (req, res) => {
+  const { slug } = req?.params;
+
+  try {
+    const result = await Model.findOne({ slug });
+    if (!result) {
+      return res.json({
+        success: false,
+        message: "Company not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Company get success",
       data: result,
     });
   } catch (error) {
@@ -94,32 +108,35 @@ exports.getSingle = async (req, res) => {
 
 exports.update = async (req, res) => {
   const file = req?.file?.filename;
-  const id = req?.params?.id;
-  const data = JSON.parse(req.body.data);
 
   try {
+    const id = req?.params?.id;
+
     const isExist = await Model.findById(id);
     if (!isExist) {
       return res.json({
         success: false,
-        message: "Product not found",
+        message: "Company not found",
       });
     }
 
+    const data = req.body;
+
     const newData = {
       ...data,
-      image: file ? `/product/${file}` : isExist?.image,
+      slug: makeSlug(data?.name),
+      image: file ? `/company/${file}` : isExist?.image,
     };
 
     const result = await Model.findByIdAndUpdate(id, newData, { new: true });
 
     res.status(200).json({
       success: true,
-      message: "Products updated success",
+      message: "Director updated success",
     });
 
-    if (result && file) {
-      fs.unlink(`./uploads/product/${isExist?.image}`, (err) => {
+    if (file && result) {
+      fs.unlink(`./uploads/${isExist?.image}`, (err) => {
         if (err) {
           console.log(err);
         }
@@ -131,7 +148,7 @@ exports.update = async (req, res) => {
       message: error?.message,
     });
 
-    fs.unlink(`./uploads/product/${file}`, (err) => {
+    fs.unlink(`./uploads/company/${file}`, (err) => {
       if (err) {
         console.log(err);
       }
@@ -147,7 +164,7 @@ exports.destroy = async (req, res) => {
     if (!isExist) {
       return res.json({
         success: false,
-        message: "Product not found",
+        message: "Company not found",
       });
     }
 

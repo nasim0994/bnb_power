@@ -39,6 +39,9 @@ import EditProduct from "../pages/Dashboard/Portfolio/Product/EditProduct";
 import ProductPage from "../pages/ProductPage";
 import ProductDetails from "../pages/ProductDetails";
 import CompanyDetails from "../pages/Company/CompanyDetails";
+import AllCompanies from "../pages/Dashboard/Company/Companies/AllCompanies";
+import AddCompany from "../pages/Dashboard/Company/Companies/AddCompany";
+import EditCompany from "../pages/Dashboard/Company/Companies/EditCompany";
 
 const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
 const SEO = lazy(() => import("../pages/Dashboard/SEO/SEO"));
@@ -93,15 +96,6 @@ const ClientMessage = lazy(() =>
 const ClientMsgDetail = lazy(() =>
   import("../pages/Dashboard/ClientMessage/ClientMsgDetail")
 );
-const AllDirector = lazy(() =>
-  import("../pages/Dashboard/Director/AllDirector")
-);
-const AddDirector = lazy(() =>
-  import("../pages/Dashboard/Director/AddDirector")
-);
-const EditDirector = lazy(() =>
-  import("../pages/Dashboard/Director/EditDirector")
-);
 const Profile = lazy(() =>
   import("../pages/Dashboard/GeneralSetting/Profile/Profile")
 );
@@ -116,7 +110,7 @@ export const routes = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/company/:id",
+        path: "/company/:slug",
         element: (
           <Suspense fallback={<Spinner />}>
             <CompanyDetails />
@@ -128,14 +122,6 @@ export const routes = createBrowserRouter([
         element: (
           <Suspense fallback={<Spinner />}>
             <ServicesPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/about-us/:slug",
-        element: (
-          <Suspense fallback={<Spinner />}>
-            <AboutPage />
           </Suspense>
         ),
       },
@@ -235,24 +221,6 @@ export const routes = createBrowserRouter([
         element: <Counter />,
       },
 
-      // -----Features
-      {
-        path: "feature-section",
-        element: <FeatureSection />,
-      },
-      {
-        path: "features",
-        element: <AllFeatures />,
-      },
-      {
-        path: "feature/add",
-        element: <AddFeature />,
-      },
-      {
-        path: "feature/edit/:id",
-        element: <EditFeature />,
-      },
-
       // -----Contact Us
       {
         path: "contact-us",
@@ -287,18 +255,18 @@ export const routes = createBrowserRouter([
         element: <EditAbout />,
       },
 
-      // -----Director
+      // ---------------Company
       {
-        path: "director/all",
-        element: <AllDirector />,
+        path: "company/all",
+        element: <AllCompanies />,
       },
       {
-        path: "director/add",
-        element: <AddDirector />,
+        path: "company/add",
+        element: <AddCompany />,
       },
       {
-        path: "director/edit/:id",
-        element: <EditDirector />,
+        path: "company/edit/:id",
+        element: <EditCompany />,
       },
 
       // ----------------Portfolio-----------

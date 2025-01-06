@@ -1,43 +1,34 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import ReactImageUploading from "react-images-uploading";
 import { AiFillDelete } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useAddDirectorMutation } from "../../../Redux/directorApi";
+import { useAddCompanyMutation } from "../../../../Redux/companyApi";
 
-import JoditEditor from "jodit-react";
-
-export default function AddDirector() {
-  const editor = useRef(null);
+export default function AddCompany() {
   const [images, setImages] = useState([]);
-  const [description, setDescription] = useState("");
   const navigate = useNavigate();
 
-  const [addDirector, { isLoading }] = useAddDirectorMutation();
+  const [addCompany, { isLoading }] = useAddCompanyMutation();
 
   const handleAdd = async (e) => {
     e.preventDefault();
 
     const name = e.target.name.value;
-    const designation = e.target.designation.value;
 
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("designation", designation);
-    formData.append("description", description);
     images?.length > 0 && formData.append("image", images[0].file);
 
-    const res = await addDirector(formData);
+    const res = await addCompany(formData);
 
     if (res?.data?.success) {
-      toast.success("Director added successfully");
+      toast.success("Company added successfully");
       e.target.reset();
       setImages([]);
-      navigate("/admin/director/all");
+      navigate("/admin/company/all");
     } else {
-      toast.error(
-        res?.data?.message ? res?.data?.message : "Something went wrong!"
-      );
+      toast.error(res?.data?.message || "Something went wrong!");
       console.log(res);
     }
   };
@@ -45,7 +36,7 @@ export default function AddDirector() {
   return (
     <section className="bg-base-100 shadow rounded">
       <div className="p-4 border-b text-neutral font-medium flex justify-between items-center">
-        <h3>Add Director</h3>
+        <h3>Add Company</h3>
       </div>
 
       <form onSubmit={handleAdd} className="p-4">
@@ -102,33 +93,12 @@ export default function AddDirector() {
             <p className="mb-1">Name</p>
             <input type="text" name="name" required />
           </div>
-
-          <div>
-            <p className="mb-1">Designation</p>
-            <input type="text" name="designation" required />
-          </div>
-        </div>
-
-        <div className="mt-4">
-          <p className="mb-1">Description</p>
-          <JoditEditor
-            ref={editor}
-            value={description}
-            tabIndex={1}
-            onBlur={(newContent) => setDescription(newContent)}
-          />
         </div>
 
         <div className="mt-5">
           <div className="flex gap-2 items-center">
-            <Link
-              to="/admin/features"
-              className="border bg-gray-600 px-6 py-2 rounded text-base-100"
-            >
-              Cancel
-            </Link>
-            <button disabled={isLoading && "disabled"} className="primary_btn">
-              {isLoading ? "Loading..." : "Add Feature"}
+            <button disabled={isLoading} className="primary_btn">
+              {isLoading ? "Loading..." : "Add Company"}
             </button>
           </div>
         </div>
