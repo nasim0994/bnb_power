@@ -25,7 +25,7 @@ export default function Banner() {
       >
         {banners?.map((banner) => (
           <SwiperSlide key={banner?._id}>
-            <div className="h-[45vh] lg:h-[75vh] relative">
+            <div className="h-[45vh] lg:h-[85vh] relative">
               <div className="absolute -z-0 top-0 left-0 w-full h-full">
                 <img
                   src={import.meta.env.VITE_BACKEND_URL + banner?.bgImage}

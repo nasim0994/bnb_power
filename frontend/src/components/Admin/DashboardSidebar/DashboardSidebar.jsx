@@ -161,7 +161,7 @@ const adminSidebarItems = [
 
 export default function DashboardSidebar() {
   const { data } = useGetLogosQuery();
-  const logo = data?.data.logo;
+  const logo = data?.data?.logo;
 
   return (
     <div className="h-full flex flex-col justify-between">

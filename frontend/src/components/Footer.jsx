@@ -24,7 +24,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#1F2530] pt-10 pb-5 text-base-100">
+    <footer className="bg-gray-200 pt-10 pb-5 text-neutral">
       <div className="container">
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-10 pb-14">
           <div className="md:col-span-2">
@@ -34,14 +34,14 @@ export default function Footer() {
               className="w-60"
               loading="lazy"
             />
-            <p className="text-sm mt-3 text-gray-300">
+            <p className="text-sm mt-3 text-gray-600 font-light">
               {businessInfo?.tagline}
             </p>
           </div>
 
           <div>
-            <h2 className="text-gray-200 text-xl font-medium">Informations</h2>
-            <ul className="text-gray-300 font-light mt-2 flex flex-col gap-1.5 text-[15px]">
+            <h2 className="text-xl font-medium">Informations</h2>
+            <ul className="text-gray-600 font-light mt-2 flex flex-col gap-1.5 text-[15px]">
               <li>
                 <Link to="/" className="hover:underline">
                   Home
@@ -71,8 +71,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <h2 className="text-gray-200 text-xl font-medium">Contact</h2>
-            <ul className="text-gray-300 font-light mt-2 flex flex-col gap-1.5 text-[15px]">
+            <h2 className="text-xl font-medium">Contact</h2>
+            <ul className="text-gray-600 font-light mt-2 flex flex-col gap-1.5 text-[15px]">
               <li>
                 <p className="flex items-center gap-1.5">
                   <BsTelephone />
@@ -97,9 +97,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t pt-5">
+        <div className="border-t border-primary pt-5">
           <div className="flex justify-between items-center">
-            <p className="text-gray-400 text-sm font-light">
+            <p className="text-gray-600 text-sm font-light">
               Copyright © {businessInfo?.businessStartYear}-{currentYear}{" "}
               {businessInfo?.businessName}. All rights reserved. developed by{" "}
               <Link
@@ -117,7 +117,7 @@ export default function Footer() {
                   to={social?.url}
                   target="_blank"
                   key={i}
-                  className="w-7 h-7 rounded-full bg-primary/50 flex justify-center items-center text-base-100 hover:-mt-1 duration-200"
+                  className="w-7 h-7 rounded-full bg-primary flex justify-center items-center text-base-100 hover:-mt-1 duration-200"
                 >
                   {React.createElement(FaIcons[social?.icon])}
                 </Link>

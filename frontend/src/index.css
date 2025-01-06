@@ -6,12 +6,7 @@
 
 :root {
   --primary: #078586;
-  --secondary: #fd9216;
-}
-
-::selection {
-  background: var(--primary);
-  color: #fff;
+  --secondary: #0e4677;
 }
 
 html {

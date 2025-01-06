@@ -7,7 +7,7 @@ export default function Services() {
   const services = useMemo(() => data?.data, [data?.data]);
 
   return (
-    <section className="py-10">
+    <section className="py-10 bg-gray-50">
       <div className="container">
         <div className="text-center">
           <h3 className="text-2xl sm:text-4xl font-bold text-neutral ">

@@ -10,7 +10,7 @@ export default function Contact() {
   const { data } = useGetContactsQuery();
   const contact = data?.data;
 
-  console.log(pathname);
+  console.log(contact);
 
   const [addMessage, { isLoading }] = useAddMessageMutation();
 
@@ -50,38 +50,73 @@ export default function Contact() {
               {contact?.description}
             </p>
 
-            <div className="mt-6 flex flex-col gap-1.5 text-neutral">
-              {contact?.numbers?.length > 0 &&
-                contact?.numbers?.map((number, i) => (
-                  <div
-                    key={i}
-                    className="flex gap-3 items-center border rounded p-4 bg-base-100"
-                  >
-                    <p>
-                      <FaPhone className="text-xl" />
-                    </p>
-                    <div>
-                      <p className="text-lg font-medium">{number?.title}</p>
-                      <p className="text-neutral-content">{number?.number}</p>
-                    </div>
-                  </div>
-                ))}
+            <div className="mt-3 flex gap-3 items-center border rounded p-4 bg-base-100">
+              <p>
+                <FaLocationDot className="text-xl" />
+              </p>
+              <div>
+                <p className="text-lg font-medium">Email</p>
+                <p className="text-neutral-content">{contact?.email}</p>
+              </div>
+            </div>
 
-              {contact?.address?.length > 0 &&
-                contact?.address?.map((ads, i) => (
-                  <div
-                    key={i}
-                    className="flex gap-3 items-center border rounded p-4 bg-base-100"
-                  >
-                    <p>
-                      <FaLocationDot className="text-xl" />
-                    </p>
-                    <div>
-                      <p className="text-lg font-medium">{ads?.title}</p>
-                      <p className="text-neutral-content">{ads?.number}</p>
-                    </div>
+            <div className="mt-2 flex flex-col gap-1.5 text-neutral">
+              <div>
+                <div className="flex gap-3 items-center border rounded p-4 bg-base-100">
+                  <p>
+                    <FaPhone className="text-xl" />
+                  </p>
+                  <div>
+                    <p className="text-lg font-medium">Number</p>
+                    <p className="text-neutral-content">{contact?.phone}</p>
                   </div>
-                ))}
+                </div>
+
+                {contact?.numbers?.length > 0 &&
+                  contact?.numbers?.map((number, i) => (
+                    <div
+                      key={i}
+                      className="flex gap-3 items-center border rounded p-4 bg-base-100"
+                    >
+                      <p>
+                        <FaPhone className="text-xl" />
+                      </p>
+                      <div>
+                        <p className="text-lg font-medium">{number?.title}</p>
+                        <p className="text-neutral-content">{number?.number}</p>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+
+              <div>
+                <div className="flex gap-3 items-center border rounded p-4 bg-base-100">
+                  <p>
+                    <FaLocationDot className="text-xl" />
+                  </p>
+                  <div>
+                    <p className="text-lg font-medium">Address</p>
+                    <p className="text-neutral-content">
+                      {contact?.mainaddress}
+                    </p>
+                  </div>
+                </div>
+                {contact?.address?.length > 0 &&
+                  contact?.address?.map((ads, i) => (
+                    <div
+                      key={i}
+                      className="flex gap-3 items-center border rounded p-4 bg-base-100"
+                    >
+                      <p>
+                        <FaLocationDot className="text-xl" />
+                      </p>
+                      <div>
+                        <p className="text-lg font-medium">{ads?.title}</p>
+                        <p className="text-neutral-content">{ads?.number}</p>
+                      </div>
+                    </div>
+                  ))}
+              </div>
             </div>
           </div>
 

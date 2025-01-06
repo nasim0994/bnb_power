@@ -10,7 +10,7 @@ export default function TopHeader() {
   const contact = data?.data;
 
   return (
-    <section className="bg-secondary text-base-100 hidden sm:block py-1">
+    <section className="bg-primary text-base-100 hidden sm:block py-1">
       <div className="container">
         <div className="flex justify-between items-center text-[13px]">
           <div className="flex items-center gap-4">
