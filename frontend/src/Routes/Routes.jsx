@@ -5,12 +5,8 @@ import Spinner from "../components/Spinner/Spinner";
 import MainLayout from "../Layout/MainLayout";
 import Home from "../pages/Home/Home";
 
-const Directors = lazy(() => import("../pages/Directors/Directors"));
 const ServicesPage = lazy(() => import("../pages/ServicesPage"));
-const BlogsPage = lazy(() => import("../pages/BlogsPage"));
-const AboutPage = lazy(() => import("../pages/AboutPage"));
 const ContactPage = lazy(() => import("../pages/ContactPage"));
-const BlogDetails = lazy(() => import("../pages/BlogDetails"));
 import Login from "../pages/Login/Login";
 
 // ----------------------Dashboard----------------------------------
@@ -18,26 +14,8 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import DashboardLayout from "../Layout/DashboardLayout";
 import AddAbout from "../pages/Dashboard/AboutUs/AddAbout";
 import EditAbout from "../pages/Dashboard/AboutUs/EditAbout";
-import Activities from "../pages/Activities";
-import AllPortfolio from "../pages/Dashboard/Portfolio/Portfolio/AllPortfolio";
-import AddPortfolio from "../pages/Dashboard/Portfolio/Portfolio/AddPortfolio";
-import EditPortfolio from "../pages/Dashboard/Portfolio/Portfolio/EditPortfolio";
-import AllCategory from "../pages/Dashboard/Portfolio/Category/AllCategory";
-import AddCategory from "../pages/Dashboard/Portfolio/Category/AddCategory";
-import EditCategory from "../pages/Dashboard/Portfolio/Category/EditCategory";
-import AllClass from "../pages/Dashboard/Portfolio/Class/AllClass";
-import AddClass from "../pages/Dashboard/Portfolio/Class/AddClass";
-import EditClass from "../pages/Dashboard/Portfolio/Class/EditClass";
-import Portfolio from "../pages/Portfolio";
-import ClsCategoryByPortfolio from "../pages/ClsCategoryByPortfolio";
 import WhoWeAre from "../pages/Dashboard/AboutUs/WhoWeAre/WhoWeAre";
 import WhoWeArePage from "../pages/WhoWeArePage";
-import FeatureSection from "../pages/Dashboard/Feature/FeatureSection";
-import AllProducts from "../pages/Dashboard/Portfolio/Product/AllProducts";
-import AddProduct from "../pages/Dashboard/Portfolio/Product/AddProduct";
-import EditProduct from "../pages/Dashboard/Portfolio/Product/EditProduct";
-import ProductPage from "../pages/ProductPage";
-import ProductDetails from "../pages/ProductDetails";
 import CompanyDetails from "../pages/Company/CompanyDetails";
 import AllCompanies from "../pages/Dashboard/Company/Companies/AllCompanies";
 import AddCompany from "../pages/Dashboard/Company/Companies/AddCompany";
@@ -70,25 +48,12 @@ const Administrator = lazy(() =>
 const AddAdministrator = lazy(() =>
   import("../pages/Dashboard/Administrator/AddAdministrator")
 );
-const AllBlogs = lazy(() => import("../pages/Dashboard/Blog/AllBlogs"));
-const AddBlog = lazy(() => import("../pages/Dashboard/Blog/AddBlog"));
-const EditBlog = lazy(() => import("../pages/Dashboard/Blog/EditBlog"));
 const AllServices = lazy(() =>
   import("../pages/Dashboard/Service/AllServices")
 );
 const AddService = lazy(() => import("../pages/Dashboard/Service/AddService"));
 const EditService = lazy(() =>
   import("../pages/Dashboard/Service/EditService")
-);
-const VideoSection = lazy(() =>
-  import("../pages/Dashboard/VideoSection/VideoSection")
-);
-const AllFeatures = lazy(() =>
-  import("../pages/Dashboard/Feature/AllFeatures")
-);
-const AddFeature = lazy(() => import("../pages/Dashboard/Feature/AddFeature"));
-const EditFeature = lazy(() =>
-  import("../pages/Dashboard/Feature/EditFeature")
 );
 const ClientMessage = lazy(() =>
   import("../pages/Dashboard/ClientMessage/ClientMessage")
@@ -126,14 +91,6 @@ export const routes = createBrowserRouter([
         ),
       },
       {
-        path: "/activities",
-        element: (
-          <Suspense fallback={<Spinner />}>
-            <Activities />
-          </Suspense>
-        ),
-      },
-      {
         path: "/contact-us",
         element: (
           <Suspense fallback={<Spinner />}>
@@ -142,52 +99,10 @@ export const routes = createBrowserRouter([
         ),
       },
       {
-        path: "/about-us/board-directors",
-        element: (
-          <Suspense fallback={<Spinner />}>
-            <Directors />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/portfolio",
-        element: (
-          <Suspense fallback={<Spinner />}>
-            <Portfolio />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/portfolio/:slug",
-        element: (
-          <Suspense fallback={<Spinner />}>
-            <ClsCategoryByPortfolio />
-          </Suspense>
-        ),
-      },
-      {
         path: "/who-we-are",
         element: (
           <Suspense fallback={<Spinner />}>
             <WhoWeArePage />
-          </Suspense>
-        ),
-      },
-
-      // Product
-      {
-        path: "/products/:portfolio/:category/:cls",
-        element: (
-          <Suspense fallback={<Spinner />}>
-            <ProductPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/product/:id",
-        element: (
-          <Suspense fallback={<Spinner />}>
-            <ProductDetails />
           </Suspense>
         ),
       },
@@ -269,69 +184,6 @@ export const routes = createBrowserRouter([
         element: <EditCompany />,
       },
 
-      // ----------------Portfolio-----------
-      // --------Portfolio
-      {
-        path: "portfolio/all",
-        element: <AllPortfolio />,
-      },
-      {
-        path: "portfolio/add",
-        element: <AddPortfolio />,
-      },
-      {
-        path: "portfolio/edit/:id",
-        element: <EditPortfolio />,
-      },
-
-      // --------Class Category
-      {
-        path: "portfolio/category/all",
-        element: <AllCategory />,
-      },
-      {
-        path: "portfolio/category/add",
-        element: <AddCategory />,
-      },
-      {
-        path: "portfolio/category/edit/:id",
-        element: <EditCategory />,
-      },
-
-      // --------Class
-      {
-        path: "portfolio/class/all",
-        element: <AllClass />,
-      },
-      {
-        path: "portfolio/class/add",
-        element: <AddClass />,
-      },
-      {
-        path: "portfolio/class/edit/:id",
-        element: <EditClass />,
-      },
-
-      // --------Product
-      {
-        path: "portfolio/product/all",
-        element: <AllProducts />,
-      },
-      {
-        path: "portfolio/product/add",
-        element: <AddProduct />,
-      },
-      {
-        path: "portfolio/product/edit/:id",
-        element: <EditProduct />,
-      },
-
-      // -----Video Section
-      {
-        path: "video-section",
-        element: <VideoSection />,
-      },
-
       // -----Administrator
       {
         path: "administrator/all",
@@ -340,20 +192,6 @@ export const routes = createBrowserRouter([
       {
         path: "administrator/add",
         element: <AddAdministrator />,
-      },
-
-      //--------Blogs
-      {
-        path: "blogs",
-        element: <AllBlogs />,
-      },
-      {
-        path: "blogs/add",
-        element: <AddBlog />,
-      },
-      {
-        path: "blogs/edit/:id",
-        element: <EditBlog />,
       },
 
       // -------services

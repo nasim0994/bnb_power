@@ -7,7 +7,7 @@ export default function ServiceCard({ service }) {
         className="rounded"
         loading="lazy"
       />
-      <h2 className="title text-2xl font-medium mb-2 mt-5">{service?.title}</h2>
+      <h2 className="title text-xl font-medium mb-2 mt-5">{service?.title}</h2>
     </div>
   );
 }

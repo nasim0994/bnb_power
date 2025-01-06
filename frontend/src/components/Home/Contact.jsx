@@ -10,8 +10,6 @@ export default function Contact() {
   const { data } = useGetContactsQuery();
   const contact = data?.data;
 
-  console.log(contact);
-
   const [addMessage, { isLoading }] = useAddMessageMutation();
 
   const handleAdd = async (e) => {
@@ -31,9 +29,7 @@ export default function Contact() {
       e.target.reset();
       toast.success("Message sent successfully");
     } else {
-      toast.error(
-        res?.data?.message ? res?.data?.message : "Something went wrong!"
-      );
+      toast.error(res?.data?.message || "Something went wrong!");
       console.log(res);
     }
   };

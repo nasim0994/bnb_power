@@ -3,7 +3,9 @@ const fs = require("fs");
 const makeSlug = require("../utils/makeSlug");
 
 exports.add = async (req, res) => {
-  const file = req?.file?.filename;
+  const { image, profile } = req?.files;
+  const file = image && image[0]?.filename;
+  const profileDoc = profile && profile[0]?.filename;
   const data = req?.body;
 
   try {
@@ -11,6 +13,7 @@ exports.add = async (req, res) => {
       ...data,
       slug: makeSlug(data?.name),
       image: `/company/${file}`,
+      profile: `/company/${profileDoc}`,
     };
 
     const result = await Model.create(newData);
@@ -29,6 +32,11 @@ exports.add = async (req, res) => {
     });
   } catch (error) {
     fs.unlink(`./uploads/company/${file}`, (err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+    fs.unlink(`./uploads/company/${profileDoc}`, (err) => {
       if (err) {
         console.log(err);
       }
@@ -107,7 +115,9 @@ exports.getBySlug = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
-  const file = req?.file?.filename;
+  const { image, profile } = req?.files;
+  const file = image && image[0]?.filename;
+  const profileDoc = profile && profile[0]?.filename;
 
   try {
     const id = req?.params?.id;
@@ -126,6 +136,7 @@ exports.update = async (req, res) => {
       ...data,
       slug: makeSlug(data?.name),
       image: file ? `/company/${file}` : isExist?.image,
+      profile: profileDoc ? `/company/${profileDoc}` : isExist?.profile,
     };
 
     const result = await Model.findByIdAndUpdate(id, newData, { new: true });
@@ -142,17 +153,35 @@ exports.update = async (req, res) => {
         }
       });
     }
+
+    if (profileDoc && result) {
+      fs.unlink(`./uploads/${isExist?.profile}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
   } catch (error) {
     res.json({
       success: false,
       message: error?.message,
     });
 
-    fs.unlink(`./uploads/company/${file}`, (err) => {
-      if (err) {
-        console.log(err);
-      }
-    });
+    if (file) {
+      fs.unlink(`./uploads/company/${file}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+
+    if (profile) {
+      fs.unlink(`./uploads/company/${profileDoc}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
   }
 };
 
@@ -168,21 +197,27 @@ exports.destroy = async (req, res) => {
       });
     }
 
-    if (isExist) {
-      const result = await Model.findByIdAndDelete(id);
+    const result = await Model.findByIdAndDelete(id);
 
-      if (result) {
-        fs.unlink(`./uploads/${isExist?.image}`, (err) => {
-          if (err) {
-            console.log(err);
-          }
-        });
-      }
+    res.status(200).json({
+      success: true,
+      message: "Delete success",
+      data: result,
+    });
 
-      res.status(200).json({
-        success: true,
-        message: "Delete success",
-        data: result,
+    if (result) {
+      fs.unlink(`./uploads/${isExist?.image}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+
+    if (result) {
+      fs.unlink(`./uploads/${isExist?.profile}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
       });
     }
   } catch (error) {

@@ -48,23 +48,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link to="who-we-are" className="hover:underline">
-                  About
+                <Link to="/services" className="hover:underline">
+                  Services
                 </Link>
               </li>
               <li>
-                <Link to={`/portfolio`} className="hover:underline">
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link to={`/blogs`} className="hover:underline">
-                  Blogs
+                <Link to="/who-we-are" className="hover:underline">
+                  About Us
                 </Link>
               </li>
               <li>
                 <Link to={`/contact-us`} className="hover:underline">
-                  Contact
+                  Contact Us
                 </Link>
               </li>
             </ul>

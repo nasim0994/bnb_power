@@ -20,11 +20,27 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-router.post("/add", verifyAdmin, upload.single("image"), add);
+router.post(
+  "/add",
+  verifyAdmin,
+  upload.fields([
+    { name: "image", maxCount: 1 },
+    { name: "profile", maxCount: 1 },
+  ]),
+  add
+);
 router.get("/all", getAll);
 router.get("/:id", getSingle);
 router.get("/slug/:slug", getBySlug);
-router.patch("/update/:id", verifyAdmin, upload.single("image"), update);
+router.patch(
+  "/update/:id",
+  verifyAdmin,
+  upload.fields([
+    { name: "image", maxCount: 1 },
+    { name: "profile", maxCount: 1 },
+  ]),
+  update
+);
 router.delete("/delete/:id", verifyAdmin, destroy);
 
 module.exports = router;

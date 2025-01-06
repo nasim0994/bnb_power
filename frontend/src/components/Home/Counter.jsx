@@ -23,7 +23,7 @@ export default function Counter() {
     >
       <div className="container">
         <div>
-          <h2 className="text-4xl font-bold text-center mb-10 text-secondary">
+          <h2 className="text-4xl font-bold text-center mb-10 text-base-100">
             {counter?.title}
           </h2>
 

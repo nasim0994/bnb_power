@@ -18,9 +18,11 @@ export default function Companies() {
               <img
                 src={`${import.meta.env.VITE_BACKEND_URL}/${company?.image}`}
                 alt="atom"
-                className="w-28 mx-auto"
+                className="w-28 h-16 mx-auto"
               />
-              <h2 className="text-xl">{company?.name}</h2>
+              <h2 className="text-xl font-semibold text-neutral">
+                {company?.name}
+              </h2>
             </Link>
           ))}
         </div>

@@ -14,6 +14,13 @@ const CompanySchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  description: {
+    type: String,
+    required: true,
+  },
+  profile: {
+    type: String,
+  },
 });
 
 const Company = mongoose.model("Company", CompanySchema);

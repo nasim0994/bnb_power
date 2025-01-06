@@ -1,10 +1,15 @@
 const AboutUs = require("../models/aboutModel");
+const makeSlug = require("../utils/makeSlug");
+const fs = require("fs");
 
 exports.add = async (req, res) => {
+  const file = req?.file?.filename;
   const data = req?.body;
+
   const newData = {
     ...data,
-    slug: data?.title?.toLowerCase().replace(/ /g, "-"),
+    slug: makeSlug(data?.title),
+    image: `/aboutus/${file}`,
   };
 
   try {
@@ -16,6 +21,12 @@ exports.add = async (req, res) => {
       data: result,
     });
   } catch (err) {
+    fs.unlink(`./uploads/aboutus/${file}`, (err) => {
+      if (err) {
+        console.log(err);
+      }
+    });
+
     res.json({
       success: false,
       message: err.message,
@@ -94,8 +105,8 @@ exports.getBySlug = async (req, res) => {
 
 exports.update = async (req, res) => {
   const id = req?.params?.id;
+  const file = req?.file?.filename;
   const data = req?.body;
-  const slug = data?.title?.toLowerCase().replace(/ /g, "-");
 
   try {
     const isExit = await AboutUs.findById(id);
@@ -109,7 +120,11 @@ exports.update = async (req, res) => {
 
     const result = await AboutUs.findByIdAndUpdate(
       id,
-      { ...data, slug },
+      {
+        ...data,
+        slug: makeSlug(data?.title),
+        image: file ? `/aboutus/${file}` : isExit?.image,
+      },
       { new: true }
     );
 
@@ -118,7 +133,23 @@ exports.update = async (req, res) => {
       message: `${data?.title} updated successfully`,
       data: result,
     });
+
+    if (file && result) {
+      fs.unlink(`./uploads/${isExit?.image}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
   } catch (error) {
+    if (file) {
+      fs.unlink(`./uploads/aboutus/${file}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
+
     res.json({
       success: false,
       message: error.message,
@@ -146,6 +177,14 @@ exports.destroy = async (req, res) => {
       message: `${isExit?.title} deleted successfully`,
       data: result,
     });
+
+    if (result) {
+      fs.unlink(`./uploads/${isExit?.image}`, (err) => {
+        if (err) {
+          console.log(err);
+        }
+      });
+    }
   } catch (error) {
     res.json({
       success: false,

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import Whoweare from "../components/Home/Whoweare";
+import MoreAbout from "../components/Home/MoreAbout";
 
 export default function WhoWeArePage() {
   useEffect(() => {
@@ -10,6 +11,7 @@ export default function WhoWeArePage() {
   return (
     <>
       <Whoweare />
+      <MoreAbout />
     </>
   );
 }

@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ReactImageUploading from "react-images-uploading";
 import { AiFillDelete } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAddCompanyMutation } from "../../../../Redux/companyApi";
+import JoditEditor from "jodit-react";
 
 export default function AddCompany() {
-  const [images, setImages] = useState([]);
+  const editor = useRef(null);
   const navigate = useNavigate();
+  const [images, setImages] = useState([]);
+  const [description, setDescription] = useState("");
 
   const [addCompany, { isLoading }] = useAddCompanyMutation();
 
@@ -15,10 +18,17 @@ export default function AddCompany() {
     e.preventDefault();
 
     const name = e.target.name.value;
+    const profile = e.target.profile.files[0];
+
+    if (!name) return toast.error("Name is required");
+    if (!description) return toast.error("Description is required");
+    if (images?.length === 0) return toast.error("Image is required");
 
     const formData = new FormData();
     formData.append("name", name);
+    formData.append("description", description);
     images?.length > 0 && formData.append("image", images[0].file);
+    profile && formData.append("profile", profile);
 
     const res = await addCompany(formData);
 
@@ -93,6 +103,21 @@ export default function AddCompany() {
             <p className="mb-1">Name</p>
             <input type="text" name="name" required />
           </div>
+          <div>
+            <p className="mb-1">
+              Profile Doc <small>(pdf Only)</small>
+            </p>
+            <input type="file" name="profile" />
+          </div>
+        </div>
+
+        <div>
+          <p className="mb-1">Description</p>
+          <JoditEditor
+            ref={editor}
+            value={description}
+            onBlur={(text) => setDescription(text)}
+          />
         </div>
 
         <div className="mt-5">

@@ -15,7 +15,7 @@ export default function Services() {
           </h3>
         </div>
 
-        <div className="mt-10 grid sm:grid-cols-2 md:grid-cols-3 lg::grid-cols-4 gap-2">
+        <div className="mt-10 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
           {services?.map((service) => (
             <ServiceCard key={service?._id} service={service} />
           ))}

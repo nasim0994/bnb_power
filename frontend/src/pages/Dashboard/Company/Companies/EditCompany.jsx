@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactImageUploading from "react-images-uploading";
 import { AiFillDelete } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router-dom";
@@ -7,26 +7,37 @@ import {
   useEditCompanyMutation,
   useGetSingleCompanyQuery,
 } from "../../../../Redux/companyApi";
+import JoditEditor from "jodit-react";
 
 export default function EditCompany() {
   const { id } = useParams();
+  const editor = useRef(null);
   const navigate = useNavigate();
   const [images, setImages] = useState([]);
+  const [description, setDescription] = useState("");
 
   const { data, isLoading } = useGetSingleCompanyQuery(id);
   const company = data?.data;
+
+  useEffect(() => {
+    if (company) {
+      setDescription(company?.description);
+    }
+  }, [company]);
 
   const [editCompany, { isLoading: editLoading }] = useEditCompanyMutation();
 
   const handleEdit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
+    const profile = e.target.profile.files[0];
 
     const formData = new FormData();
     formData.append("name", name);
-    if (images?.length > 0) {
-      formData.append("image", images[0].file);
-    }
+    formData.append("description", description);
+
+    if (images?.length > 0) formData.append("image", images[0].file);
+    if (profile) formData.append("profile", profile);
 
     const res = await editCompany({ id, formData });
     if (res?.data?.success) {
@@ -112,6 +123,23 @@ export default function EditCompany() {
             <p className="mb-1">Name</p>
             <input type="text" name="name" defaultValue={company?.name} />
           </div>
+
+          <div>
+            <p className="mb-1">
+              Profile Doc <small>(pdf Only)</small> -{" "}
+              <small>{company?.profile}</small>
+            </p>
+            <input type="file" name="profile" />
+          </div>
+        </div>
+
+        <div>
+          <p className="mb-1">Description</p>
+          <JoditEditor
+            ref={editor}
+            value={description}
+            onBlur={(text) => setDescription(text)}
+          />
         </div>
 
         <div className="mt-5">

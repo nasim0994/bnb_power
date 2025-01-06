@@ -39,6 +39,7 @@ export default function AboutUs() {
             <thead>
               <tr>
                 <th>SL</th>
+                <th>Image</th>
                 <th>Title</th>
                 <th>Action</th>
               </tr>
@@ -47,6 +48,15 @@ export default function AboutUs() {
               {abouts?.map((about, i) => (
                 <tr key={i}>
                   <td>{i + 1}</td>
+                  <td>
+                    <img
+                      src={`${import.meta.env.VITE_BACKEND_URL}/${
+                        about?.image
+                      }`}
+                      alt={about?.title}
+                      className="w-12 object-cover rounded"
+                    />
+                  </td>
                   <td>{about?.title}</td>
                   <td>
                     <div className="flex items-center gap-2">

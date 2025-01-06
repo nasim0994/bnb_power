@@ -3,9 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { useGetLogosQuery } from "../Redux/logoApi";
-import { useGetAboutQuery } from "../Redux/aboutApi";
-import { IoIosArrowDown } from "react-icons/io";
-import { useGetAllPortfolioQuery } from "../Redux/portfolio/portfolioApi";
+import { useGetAllCompanyQuery } from "../Redux/companyApi";
 
 export default function Header() {
   const [mobileMenu, setmobileMenu] = useState(false);
@@ -13,11 +11,8 @@ export default function Header() {
   const { data } = useGetLogosQuery();
   const logo = useMemo(() => data?.data.logo, [data?.data]);
 
-  const { data: aData } = useGetAboutQuery();
-  const abouts = aData?.data;
-
-  const { data: pData } = useGetAllPortfolioQuery();
-  const portfolios = pData?.data;
+  const { data: company } = useGetAllCompanyQuery();
+  const companies = company?.data;
 
   useEffect(() => {
     window.addEventListener("click", (e) => {
@@ -71,14 +66,14 @@ export default function Header() {
               </li>
 
               <li>
-                <NavLink to="/portfolio">Company</NavLink>
+                <Link to="#">Company</Link>
 
                 <div className="dropdown">
                   <ul>
-                    {portfolios?.map((portfolio, i) => (
+                    {companies?.map((company, i) => (
                       <li key={i}>
-                        <Link to={`/portfolio/${portfolio?.slug}`}>
-                          {portfolio?.title}
+                        <Link to={`/company/${company?.slug}`}>
+                          {company?.name}
                         </Link>
                       </li>
                     ))}
