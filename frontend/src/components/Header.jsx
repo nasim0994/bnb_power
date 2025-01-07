@@ -34,7 +34,7 @@ export default function Header() {
             <img
               src={import.meta.env.VITE_BACKEND_URL + logo}
               alt="logo"
-              className="w-36 sm:w-40 xl:w-48"
+              className="w-20 sm:w-24 xl:w-[115px]"
               loading="lazy"
             />
           </Link>
@@ -47,7 +47,7 @@ export default function Header() {
 
             <button
               onClick={() => setmobileMenu(!mobileMenu)}
-              className="min-[800px]:hidden menu_btn"
+              className="md:hidden menu_btn"
             >
               <HiOutlineMenuAlt3 className="text-2xl" />
             </button>

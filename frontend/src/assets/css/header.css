@@ -23,6 +23,10 @@
   color: var(--primary);
 }
 
+.menu_wrap ul li a.active {
+  color: var(--primary);
+}
+
 .menu_overlay {
   display: none;
 }
@@ -31,7 +35,7 @@
   max-height: max-content !important;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 768px) {
   .menu_wrap ul {
     position: fixed;
     background: #fff;
@@ -138,7 +142,7 @@
   border-bottom: none !important;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 768px) {
   .menu_wrap .dropdown {
     position: relative !important;
     display: block !important;

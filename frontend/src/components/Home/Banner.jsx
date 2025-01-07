@@ -10,7 +10,9 @@ export default function Banner() {
   const banners = useMemo(() => data?.data, [data?.data]);
 
   if (isLoading)
-    return <div className="bg-base-100 w-full h-[45vh] lg:h-[75vh]"></div>;
+    return (
+      <div className="bg-base-100 w-full h-[50vh] md:h-[70vh] lg:h-[75vh]"></div>
+    );
 
   return (
     <section>
@@ -25,7 +27,7 @@ export default function Banner() {
       >
         {banners?.map((banner) => (
           <SwiperSlide key={banner?._id}>
-            <div className="h-[45vh] lg:h-[85vh] relative">
+            <div className="h-[50vh] md:h-[70vh] lg:h-[85vh] relative">
               <div className="absolute -z-0 top-0 left-0 w-full h-full">
                 <img
                   src={import.meta.env.VITE_BACKEND_URL + banner?.bgImage}
@@ -38,11 +40,11 @@ export default function Banner() {
               <div className="banner_content">
                 <div className="container relative">
                   <div className="text-base-100">
-                    <h2 className="text-3xl sm:text-[80px] font-bold sm:leading-[80px] lg:w-2/3">
+                    <h2 className="text-3xl sm:text-4xl lg:text-[70px] font-bold sm:leading-[70px] lg:w-2/3">
                       {banner?.title}
                     </h2>
 
-                    <p className="lg:w-2/3 text-gray-300">
+                    <p className="mt-4 sm:mt-0 lg:mt-4 lg:w-2/3 text-gray-300 text-sm sm:text-base">
                       {banner?.description}
                     </p>
                   </div>

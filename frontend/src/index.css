@@ -114,41 +114,6 @@ table tbody td {
   border-bottom: 1px solid #dddddd94;
 }
 
-/* ----------------Header---------------- */
-.menu_wrap ul li a {
-  padding: 20px 5px;
-  display: block;
-  position: relative;
-
-  transition: all 0.3s ease;
-}
-
-.menu_wrap ul li a::after {
-  content: "";
-  display: block;
-  width: 0;
-  height: 1.5px;
-  background: var(--primary);
-  transition: width 0.3s;
-
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-}
-
-.menu_wrap ul li a:hover::after,
-.menu_wrap ul li a.active::after {
-  width: 100%;
-}
-
-.menu_wrap ul li a.active {
-  color: var(--primary);
-}
-
-.menu_wrap ul li a:hover {
-  color: var(--primary) !important;
-}
-
 /* --------------Modal------------ */
 .modal_overlay {
   position: fixed;
