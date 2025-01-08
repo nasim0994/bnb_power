@@ -16,49 +16,41 @@ export default function OurClients() {
           </div>
           <div className="border">
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVwSbfJL_zk5x6fnXgZaB5DB3dwwJljgqQeQ&s"
+              src="/images/c11.png"
               alt="abb"
               className="w-28 mx-auto py-4"
             />
           </div>
           <div className="border">
-            <img
-              src="/images/siemens.png"
-              alt="abb"
-              className="w-28 mx-auto py-4"
-            />
+            <img src="/images/c1.png" alt="abb" className="w-28 mx-auto py-4" />
+          </div>
+          <div className="border">
+            <img src="/images/c2.png" alt="abb" className="w-28 mx-auto py-4" />
+          </div>
+          <div className="border">
+            <img src="/images/c3.png" alt="abb" className="w-28 mx-auto py-4" />
+          </div>
+          <div className="border">
+            <img src="/images/c4.png" alt="abb" className="w-28 mx-auto py-4" />
+          </div>
+          <div className="border">
+            <img src="/images/c5.png" alt="abb" className="w-28 mx-auto py-4" />
+          </div>
+          <div className="border">
+            <img src="/images/c6.png" alt="abb" className="w-28 mx-auto py-4" />
+          </div>
+          <div className="border">
+            <img src="/images/c7.png" alt="abb" className="w-28 mx-auto py-4" />
+          </div>
+          <div className="border">
+            <img src="/images/c8.png" alt="abb" className="w-28 mx-auto py-4" />
+          </div>
+          <div className="border">
+            <img src="/images/c9.png" alt="abb" className="w-28 mx-auto py-4" />
           </div>
           <div className="border">
             <img
-              src="/images/abb.png"
-              alt="abb"
-              className="w-28 mx-auto py-4"
-            />
-          </div>
-          <div className="border">
-            <img
-              src="/images/abb.png"
-              alt="abb"
-              className="w-28 mx-auto py-4"
-            />
-          </div>
-          <div className="border">
-            <img
-              src="/images/schneider.png"
-              alt="abb"
-              className="w-28 mx-auto py-4"
-            />
-          </div>
-          <div className="border">
-            <img
-              src="/images/siemens.png"
-              alt="abb"
-              className="w-28 mx-auto py-4"
-            />
-          </div>
-          <div className="border">
-            <img
-              src="/images/abb.png"
+              src="/images/c10.png"
               alt="abb"
               className="w-28 mx-auto py-4"
             />

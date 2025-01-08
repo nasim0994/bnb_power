@@ -21,6 +21,16 @@ export default function Whoweare() {
             <div className="mt-3 text-neutral-content text-[14.5px] flex flex-col gap-1">
               {about?.description && parse(about?.description)}
             </div>
+
+            <div className="mt-8">
+              <Link
+                to="/profile.pdf"
+                target="_blank"
+                className="primary_btn tetx-sm"
+              >
+                BNB Power & Engineering Prifile
+              </Link>
+            </div>
           </div>
 
           <div>

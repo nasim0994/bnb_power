@@ -29,27 +29,32 @@ export default function Products() {
               className="w-28 h-28 rounded-full border border-neutral"
             />
             <img
-              src="https://cdn.shakedeal.com/images/thumbnails/330/330/detailed/350/SDSMS0057000.jpg?t=1699519456"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6TqUuUu4vkUEW0cnbxTHqRajIky-f7iXXX-FKZWihzV2nNmaV"
               alt="service"
               className="w-32 h-32 rounded-full border border-neutral"
             />
             <img
-              src="https://cdn.shakedeal.com/images/thumbnails/330/330/detailed/350/SDSMS0057000.jpg?t=1699519456"
+              src="https://www.industrymart.com.bd/wp-content/uploads/2024/06/ABB-MCB-DP-16A-6KA-300x300.jpeg"
               alt="service"
               className="w-28 h-28 rounded-full border border-neutral"
             />
             <img
-              src="https://cdn.shakedeal.com/images/thumbnails/330/330/detailed/350/SDSMS0057000.jpg?t=1699519456"
+              src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_1.0,f_auto,q_auto,w_700/c_pad,w_700/R2437038-01"
               alt="service"
               className="w-32 h-32 rounded-full border border-neutral"
             />
             <img
-              src="https://cdn.shakedeal.com/images/thumbnails/330/330/detailed/350/SDSMS0057000.jpg?t=1699519456"
+              src="https://p.globalsources.com/IMAGES/PDT/B1081462713/lightning-protection-system-ESE-SEFCO-ABB-lightning-arrestor-air-terminal-rod-strike-counter.jpg"
               alt="service"
               className="w-28 h-28 rounded-full border border-neutral"
             />
             <img
-              src="https://cdn.shakedeal.com/images/thumbnails/330/330/detailed/350/SDSMS0057000.jpg?t=1699519456"
+              src="https://cdn.productimages.abb.com/9PAA00000045326_400x400.jpg"
+              alt="service"
+              className="w-28 h-28 rounded-full border border-neutral"
+            />
+            <img
+              src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTtkERoZJwsYwc0NoudrWt_oZFOr6yR1W2TH8QWuiNOtt4eLx8d"
               alt="service"
               className="w-28 h-28 rounded-full border border-neutral"
             />
