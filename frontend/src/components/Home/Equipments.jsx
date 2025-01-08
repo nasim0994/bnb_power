@@ -1,6 +1,6 @@
 export default function Equipments() {
   return (
-    <section className="bg-gray-50 py-10">
+    <section className="py-10">
       <div className="container">
         <h3 className="text-2xl sm:text-4xl font-semibold text-neutral text-center">
           <span className="primary_text">List of Equipment's</span>

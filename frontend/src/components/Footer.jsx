@@ -1,3 +1,5 @@
+import { ImOffice } from "react-icons/im";
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsTelephone } from "react-icons/bs";
@@ -26,8 +28,8 @@ export default function Footer() {
   return (
     <footer className="bg-gray-200 pt-10 pb-5 text-neutral">
       <div className="container">
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-10 pb-14">
-          <div className="md:col-span-2">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10 pb-14">
+          <div>
             <img
               src={import.meta.env.VITE_BACKEND_URL + logo?.logo}
               alt="logo"
@@ -69,23 +71,37 @@ export default function Footer() {
             <h2 className="text-xl font-medium">Contact</h2>
             <ul className="text-gray-600 font-light mt-2 flex flex-col gap-1.5 text-[15px]">
               <li>
-                <p className="flex items-center gap-1.5">
+                <p className="flex items-center gap-2.5">
                   <BsTelephone />
                   {contact?.phone}
                 </p>
               </li>
               <li>
-                <p className="flex items-center gap-1.5">
+                <p className="flex items-center gap-2.5">
                   <MdOutlineMail />
                   {contact?.email}
                 </p>
               </li>
               <li>
-                <div className="flex gap-1">
+                <div className="flex gap-2.5">
+                  <p className="text-lg mt-1">
+                    <ImOffice />
+                  </p>
+                  <p>
+                    <strong>Corporate Office:</strong> {contact?.mainaddress}
+                  </p>
+                </div>
+              </li>
+              <li>
+                <div className="flex gap-2.5">
                   <p className="text-lg mt-1">
                     <MdOutlineLocationOn />
                   </p>
-                  <p>{contact?.mainaddress}</p>
+                  <p>
+                    <strong>Dhaka Office address:</strong> Southern Ridge,
+                    House: 64 (1st Floor), Road: 03, Block: B, Niketon,
+                    Gulshan-1, Dhaka - 1212
+                  </p>
                 </div>
               </li>
             </ul>
@@ -100,7 +116,7 @@ export default function Footer() {
               <Link
                 to="https://emanagerit.com"
                 target="_blank"
-                className="underline text-primary"
+                className="underline text-[#0E4577]"
               >
                 eManager
               </Link>

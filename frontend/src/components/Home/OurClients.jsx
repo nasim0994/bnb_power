@@ -1,6 +1,6 @@
 export default function OurClients() {
   return (
-    <section className="py-10" id="our-clients">
+    <section className="py-10 bg-gray-50" id="our-clients">
       <div className="container">
         <h3 className="text-2xl sm:text-4xl font-semibold text-neutral text-center">
           <span className="primary_text">Major Client References</span>

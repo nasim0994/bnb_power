@@ -1,6 +1,6 @@
 export default function OurBrands() {
   return (
-    <section className="bg-gray-50 py-10" id="our-brands">
+    <section className="py-10" id="our-brands">
       <div className="container">
         <h3 className="text-2xl sm:text-4xl font-semibold text-neutral text-center">
           <span className="primary_text">Our Brands</span>
