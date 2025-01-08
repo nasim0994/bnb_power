@@ -1,187 +1,95 @@
-import { FaLocationDot, FaPhone } from "react-icons/fa6";
-import { useGetContactsQuery } from "../../Redux/contactApi";
-import { useAddMessageMutation } from "../../Redux/contactMessageApi";
-import toast from "react-hot-toast";
-import parse from "html-react-parser";
-import { useLocation } from "react-router-dom";
-
 export default function Contact() {
-  const { pathname } = useLocation();
-  const { data } = useGetContactsQuery();
-  const contact = data?.data;
-
-  const [addMessage, { isLoading }] = useAddMessageMutation();
-
-  const handleAdd = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.target);
-    const data = {
-      name: formData.get("name"),
-      phone: formData.get("phone"),
-      email: formData.get("email"),
-      subject: formData.get("subject"),
-      message: formData.get("message"),
-    };
-
-    const res = await addMessage(data);
-    if (res?.data?.success) {
-      e.target.reset();
-      toast.success("Message sent successfully");
-    } else {
-      toast.error(res?.data?.message || "Something went wrong!");
-      console.log(res);
-    }
-  };
-
   return (
-    <section className="py-10 lg:py-20 bg-gray-50">
+    <section className="py-10 bg-gray-50" id="contact-us">
       <div className="container">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-14">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-semibold text-neutral">
-              {contact?.title}
-            </h2>
-            <p className="text-neutral-content text-[15px] mt-1">
-              {contact?.description}
-            </p>
+        <h3 className="text-2xl sm:text-3xl font-semibold text-neutral text-center">
+          <span className="primary_text">
+            BNB POWER & ENGINEERING PROJECT DIVISION TEAM
+          </span>
+        </h3>
 
-            <div className="mt-3 flex gap-3 items-center border rounded p-4 bg-base-100">
-              <p>
-                <FaLocationDot className="text-xl" />
-              </p>
-              <div>
-                <p className="text-lg font-medium">Email</p>
-                <p className="text-neutral-content">{contact?.email}</p>
-              </div>
-            </div>
-
-            <div className="mt-2 flex flex-col gap-1.5 text-neutral">
-              <div>
-                <div className="flex gap-3 items-center border rounded p-4 bg-base-100">
-                  <p>
-                    <FaPhone className="text-xl" />
-                  </p>
-                  <div>
-                    <p className="text-lg font-medium">Number</p>
-                    <p className="text-neutral-content">{contact?.phone}</p>
-                  </div>
-                </div>
-
-                {contact?.numbers?.length > 0 &&
-                  contact?.numbers?.map((number, i) => (
-                    <div
-                      key={i}
-                      className="flex gap-3 items-center border rounded p-4 bg-base-100"
-                    >
-                      <p>
-                        <FaPhone className="text-xl" />
-                      </p>
-                      <div>
-                        <p className="text-lg font-medium">{number?.title}</p>
-                        <p className="text-neutral-content">{number?.number}</p>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-
-              <div>
-                <div className="flex gap-3 items-center border rounded p-4 bg-base-100">
-                  <p>
-                    <FaLocationDot className="text-xl" />
-                  </p>
-                  <div>
-                    <p className="text-lg font-medium">Address</p>
-                    <p className="text-neutral-content">
-                      {contact?.mainaddress}
-                    </p>
-                  </div>
-                </div>
-                {contact?.address?.length > 0 &&
-                  contact?.address?.map((ads, i) => (
-                    <div
-                      key={i}
-                      className="flex gap-3 items-center border rounded p-4 bg-base-100"
-                    >
-                      <p>
-                        <FaLocationDot className="text-xl" />
-                      </p>
-                      <div>
-                        <p className="text-lg font-medium">{ads?.title}</p>
-                        <p className="text-neutral-content">{ads?.number}</p>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h2 className="text-primary font-semibold text-xl mb-3">
-              Get In Touch
-            </h2>
-            <form onSubmit={handleAdd} className="flex flex-col gap-3">
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  className="w-full border rounded px-4 py-2 outline-none"
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name="phone"
-                  placeholder="Phone Number"
-                  className="w-full border rounded px-4 py-2 outline-none"
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  className="w-full border rounded px-4 py-2 outline-none"
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
-                  name="subject"
-                  placeholder="Subject"
-                  className="w-full border rounded px-4 py-2 outline-none"
-                  required
-                />
-              </div>
-              <div>
-                <textarea
-                  name="message"
-                  rows="5"
-                  placeholder="Type you message..."
-                  className="w-full border rounded px-4 py-2 outline-none"
-                  required
-                ></textarea>
-              </div>
-
-              <div>
-                <button
-                  disabled={isLoading}
-                  type="submit"
-                  className="primary_btn"
-                >
-                  {isLoading ? "Loading..." : "Send Message"}
-                </button>
-              </div>
-            </form>
-          </div>
+        {/* table */}
+        <div className="overflow-x-auto mt-6">
+          <table className="w-full">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Designation</th>
+                <th>Contact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>MD. Badrul Hasan</td>
+                <td>MD/CEO</td>
+                <td>
+                  <p>badrul@bnb-bd.com</p>
+                  <p>Phone: +88 01817-203030</p>
+                </td>
+              </tr>
+              <tr>
+                <td>MD. Azahar Uddin</td>
+                <td>Chief Engineer</td>
+                <td>
+                  <p>azahar@bnb-bd.com</p>
+                  <p>Phone: +88 01324-344348</p>
+                </td>
+              </tr>
+              <tr>
+                <td>MD. Ryhan Khan Bipul</td>
+                <td>Project Director</td>
+                <td>
+                  <p>bipul@bnb-bd.com</p>
+                  <p>Phone: +88 01717-143521</p>
+                </td>
+              </tr>
+              <tr>
+                <td>Md. Parves</td>
+                <td>Project Manager (operations)</td>
+                <td>
+                  <p>parves@bnb-bd.com</p>
+                  <p>Phone: +880 1819 - 045434</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        {pathname == "/contact-us" && (
-          <div className="mt-4">{contact?.map && parse(contact?.map)}</div>
-        )}
+        <div className="overflow-x-aut">
+          <table className="w-full">
+            <thead>
+              <tr>
+                <th colSpan={2} className="text-center">
+                  Singapore Office
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>MR. PC CHUA</td>
+                <td className="text-center">Phone: +65 9661 7921</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div className="overflow-x-aut">
+          <table className="w-full">
+            <thead>
+              <tr>
+                <th colSpan={2} className="text-center">
+                  MatarBari ,Cox’s Office
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mr. Hyder</td>
+                <td className="text-center">Phone: +88 01837-282263</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   );

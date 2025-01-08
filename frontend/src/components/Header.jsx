@@ -32,9 +32,13 @@ export default function Header() {
         <div className="flex justify-between items-center">
           <Link to="/">
             <img
-              src={import.meta.env.VITE_BACKEND_URL + logo}
+              src={
+                logo
+                  ? import.meta.env.VITE_BACKEND_URL + logo
+                  : "/images/logo.png"
+              }
               alt="logo"
-              className="w-20 sm:w-24 xl:w-[115px]"
+              className="w-28 sm:w-32 xl:w-40"
               loading="lazy"
             />
           </Link>
@@ -58,31 +62,27 @@ export default function Header() {
               </li>
 
               <li>
-                <NavLink to="/who-we-are">About</NavLink>
+                <a href="#about-us">About US</a>
               </li>
 
               <li>
-                <NavLink to="/services">Services</NavLink>
+                <a href="#our-services">Services</a>
               </li>
 
               <li>
-                <Link to="#">Company</Link>
-
-                <div className="dropdown">
-                  <ul>
-                    {companies?.map((company, i) => (
-                      <li key={i}>
-                        <Link to={`/company/${company?.slug}`}>
-                          {company?.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <a href="#our-products">Products</a>
               </li>
 
               <li>
-                <NavLink to="/contact-us">Contact</NavLink>
+                <a href="#our-brands">Brands</a>
+              </li>
+
+              <li>
+                <a href="#our-clients">Clients</a>
+              </li>
+
+              <li>
+                <a href="#contact-us">Contact</a>
               </li>
             </ul>
           </nav>

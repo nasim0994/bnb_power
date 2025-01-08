@@ -28,6 +28,30 @@ exports.add = async (req, res) => {
   }
 };
 
+exports.defaultAdminCreate = async (req, res) => {
+  try {
+    const isExists = await Administrator.findOne();
+
+    if (!isExists) {
+      const admin = {
+        name: "Default Admin",
+        email: "admin@gmail.com",
+        password: "12345678",
+        phone: "00000000000",
+      };
+
+      const result = await Administrator.create(admin);
+      if (!result) {
+        return console.log("Default admin user not created");
+      }
+
+      console.log("Default admin user created successfully");
+    }
+  } catch (error) {
+    console.log("Failed to create default admin user");
+  }
+};
+
 exports.login = async (req, res) => {
   const data = req?.body;
   try {
@@ -50,6 +74,8 @@ exports.login = async (req, res) => {
     }
 
     const isMatch = await bcrypt.compare(password, admin?.password);
+
+    console.log(password);
 
     if (!isMatch) {
       return res.json({

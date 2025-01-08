@@ -3,7 +3,6 @@ import { useGetAboutBySlugQuery, useGetAboutQuery } from "../Redux/aboutApi";
 import Spinner from "../components/Spinner/Spinner";
 import parse from "html-react-parser";
 import { useParams } from "react-router-dom";
-import MoreAbout from "../components/Home/MoreAbout";
 
 export default function AboutPage() {
   const { slug } = useParams();
@@ -26,8 +25,6 @@ export default function AboutPage() {
           {about?.description && parse(about?.description)}
         </div>
       </div>
-
-      <MoreAbout />
     </section>
   );
 }
