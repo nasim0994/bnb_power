@@ -24,7 +24,7 @@ export default function Contact() {
                 <td>MD/CEO</td>
                 <td>
                   <p>badrul@bnb-bd.com</p>
-                  <p>Phone: +88 01817-203030</p>
+                  <p>Phone: +880 1713-462148</p>
                 </td>
               </tr>
               <tr>
